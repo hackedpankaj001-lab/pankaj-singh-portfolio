@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VJ — The Untold Life Dossier · 1972–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5EFE4; --card:#FAF7F0; --chrome:#E8E0D2; --red:#C7442E; --red-deep:#A52C19;
+  --green:#1E7F3C; --ink:#1A1816; --muted:#4A463F; --white:#FFFFFF;
+  --mono:'Space Mono',monospace; --sans:'Inter',sans-serif;
+  --rail-w:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--red);text-decoration:none}
+/* ── top bar ── */
+.topbar{position:fixed;top:0;left:0;right:0;height:30px;background:var(--paper);border-bottom:1.5px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;z-index:60}
+.topbar .live{color:var(--green);display:flex;align-items:center;gap:6px}
+.topbar .live i{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.4s step-start infinite}
+@keyframes blink{50%{opacity:.2}}
+/* ── year rail ── */
+.rail{position:fixed;left:0;top:30px;bottom:0;width:var(--rail-w);z-index:50;display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:0;background:var(--paper);border-right:1.5px dotted rgba(26,24,22,.35)}
+.rail::before{content:"";position:absolute;top:18px;bottom:18px;left:50%;width:1.5px;border-left:1.5px dotted var(--ink);opacity:.5}
+.rail a{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);background:var(--paper);padding:6px 1px;transition:color .2s}
+.rail a::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);transition:all .25s}
+.rail a.active{color:var(--red);font-weight:700}
+.rail a.active::after{background:var(--red);border-color:var(--red);box-shadow:0 0 0 3px var(--paper),0 0 0 4.5px var(--red);animation:pip 1s step-start infinite}
+@keyframes pip{50%{opacity:.55}}
+/* ── layout ── */
+.wrap{max-width:760px;margin:0 auto;padding:46px 16px 80px calc(var(--rail-w) + 16px)}
+section{margin-bottom:54px;scroll-margin-top:44px}
+.tab{display:inline-block;background:var(--chrome);border:1.5px solid var(--ink);border-bottom:none;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,0 100%);margin-bottom:-1.5px}
+h2.ch{font-family:var(--mono);font-weight:700;font-size:24px;line-height:1.2;text-transform:uppercase;letter-spacing:-.01em;margin:14px 0 6px}
+.sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+/* ── paper card ── */
+.card{background:var(--card);border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:16px;margin-bottom:14px}
+.card.dotted{border-style:dotted}
+.card h3{font-family:var(--mono);font-size:15px;text-transform:uppercase;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--muted);margin-bottom:6px}
+.card p strong{color:var(--ink)}
+/* ── stamps ── */
+.stamp{display:inline-block;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--red);text-transform:uppercase;border:2px solid var(--red);outline:1px dotted var(--red);outline-offset:3px;padding:7px 12px;transform:rotate(-3deg);background:rgba(255,255,255,.55);margin:4px 6px 4px 0}
+.stamp.g{color:var(--green);border-color:var(--green);outline-color:var(--green);transform:rotate(2deg)}
+.stamp.big{font-size:14px;padding:12px 18px;transform:rotate(-4deg)}
+/* ── window frame ── */
+.win{border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);background:var(--card);margin-bottom:14px;overflow:hidden}
+.win .bar{background:var(--chrome);border-bottom:1.5px solid var(--ink);height:28px;display:flex;align-items:center;padding:0 8px;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.win .bar .btns{display:flex;gap:5px}
+.win .bar .btns i{width:10px;height:10px;border:1px solid var(--ink);display:inline-block;position:relative}
+.win .bar .btns i::after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8px;line-height:1}
+.win .bar .btns i:nth-child(1)::after{content:"×"}
+.win .bar .btns i:nth-child(2)::after{content:"–"}
+.win .bar .title{margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win .url{font-family:var(--mono);font-size:10.5px;padding:5px 8px;border-bottom:1.5px solid var(--ink);background:var(--white);color:var(--muted);letter-spacing:.03em}
+.win .shot{border-bottom:1.5px solid var(--ink)}
+.win .shot img{width:100%;height:auto}
+.win .cap{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--muted);padding:6px 8px;text-transform:uppercase}
+/* ── terminal ── */
+.term{background:var(--ink);color:#9BE8A8;font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:14px;margin-bottom:14px;border:1.5px solid var(--ink);box-shadow:2px 2px 0 rgba(26,24,22,.4);overflow-x:auto}
+.term .t{color:#7ADB8B}
+.term .k{color:#F4B8A8}
+.term .c{display:inline-block;width:8px;height:14px;background:#9BE8A8;vertical-align:-2px;animation:blink .53s step-start infinite}
+/* ── polaroid ── */
+.polaroid{background:var(--white);border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:8px 8px 4px;transform:rotate(-1.5deg);margin-bottom:16px;position:relative;max-width:420px}
+.polaroid::before{content:"";position:absolute;top:-9px;left:14px;width:74px;height:20px;background:rgba(232,224,210,.85);border:1px solid rgba(26,24,22,.25);transform:rotate(-4deg)}
+.polaroid img{width:100%;border:1px solid var(--chrome)}
+.polaroid .chin{font-family:var(--mono);font-size:11px;color:var(--muted);padding:8px 2px 4px;text-align:center;letter-spacing:.04em}
+/* ── quotes ── */
+.quote{border-left:3px solid var(--red);background:var(--white);border-top:1.5px dotted var(--ink);border-right:1.5px dotted var(--ink);border-bottom:1.5px dotted var(--ink);padding:14px 16px;font-family:var(--mono);font-size:14.5px;line-height:1.6;margin-bottom:12px}
+.quote .who{display:block;font-size:10px;letter-spacing:.1em;color:var(--red);margin-top:8px;text-transform:uppercase}
+/* ── chips / grids ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-family:var(--mono);font-size:11px;border:1.5px solid var(--ink);background:var(--white);padding:5px 10px;letter-spacing:.05em;box-shadow:1.5px 1.5px 0 var(--ink)}
+.chip.r{background:var(--red);color:#fff;border-color:var(--ink)}
+.chip.g{background:var(--green);color:#fff}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:14px}
+.grid.two{grid-template-columns:1fr}
+/* ── timeline rows ── */
+.tl{border-left:1.5px dotted var(--ink);margin:0 0 14px 6px;padding-left:16px}
+.tl .ev{position:relative;padding-bottom:14px}
+.tl .ev::before{content:"";position:absolute;left:-21.5px;top:5px;width:8px;height:8px;background:var(--paper);border:1.5px solid var(--ink);border-radius:50%}
+.tl .ev.hot::before{background:var(--red);border-color:var(--red)}
+.tl .yr{font-family:var(--mono);font-weight:700;font-size:12px;color:var(--red);letter-spacing:.08em}
+.tl .tx{font-size:14.5px;color:var(--muted)}
+.tl .tx strong{color:var(--ink)}
+/* ── logo wall ── */
+.logos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
+.logo{background:var(--white);border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:14px 12px 10px;text-align:center}
+.logo img{max-height:44px;margin:0 auto 10px;object-fit:contain}
+.logo .n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.logo .r{display:inline-block;font-family:var(--mono);font-size:9px;background:var(--chrome);border:1px solid var(--ink);padding:2px 6px;margin-top:6px;letter-spacing:.06em}
+/* ── press ── */
+.press{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px}
+.press .p{border:1.5px dashed var(--ink);background:var(--white);padding:10px 12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em}
+.press .p b{display:block;font-size:10px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+/* ── CTA / buttons ── */
+.btn{display:block;width:100%;text-align:center;font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;background:var(--red);color:#fff;border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:16px 14px;cursor:pointer;transition:transform .08s,box-shadow .08s;margin-bottom:12px}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+.btn .s{display:block;font-size:10px;font-weight:400;letter-spacing:.12em;margin-top:5px;opacity:.9}
+.btn.ghost{background:var(--card);color:var(--ink);border-style:dotted}
+/* ── dial input (closing) ── */
+.dial{display:flex;border:1.5px solid var(--ink);background:var(--white);box-shadow:2px 2px 0 var(--ink);margin-bottom:12px}
+.dial .pre{font-family:var(--mono);font-size:13px;padding:14px 10px;background:var(--chrome);border-right:1.5px solid var(--ink);white-space:nowrap}
+.dial input{flex:1;border:none;outline:none;font-family:var(--mono);font-size:14px;padding:14px 10px;background:transparent;min-width:0}
+/* ── footer ── */
+.foot{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);text-align:center;text-transform:uppercase;line-height:2;border-top:1.5px dotted var(--ink);padding-top:16px}
+/* ── desktop ── */
+@media (min-width:900px){
+  :root{--rail-w:72px}
+  .wrap{max-width:1060px;padding-top:60px}
+  h2.ch{font-size:34px}
+  .grid.two{grid-template-columns:1fr 1fr}
+  .grid.three{grid-template-columns:1fr 1fr 1fr}
+  .logos{grid-template-columns:repeat(3,1fr)}
+  .press{grid-template-columns:1fr 1fr}
+  .hero-flex{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+  .rail a{font-size:11px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  .polaroid{margin-left:20px}
+}
+@media (max-width:400px){ h2.ch{font-size:21px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="live"><i></i>04:00 AM [CODING SESSION ACTIVE]</span>
+  <span id="sec">SEC-72-NP</span>
+</div>
+
+<nav class="rail" id="rail">
+  <a href="#ch1" data-t="ch1">1972</a>
+  <a href="#ch2" data-t="ch2">1999</a>
+  <a href="#ch3" data-t="ch3">2012</a>
+  <a href="#ch4" data-t="ch4">2016</a>
+  <a href="#ch5" data-t="ch5">2017</a>
+  <a href="#ch6" data-t="ch6">2021</a>
+  <a href="#ch7" data-t="ch7">EMPIRE</a>
+  <a href="#ch8" data-t="ch8">2026</a>
+  <a href="#ch9" data-t="ch9">WORDS</a>
+  <a href="#ch10" data-t="ch10">NOW</a>
+</nav>
+
+<main class="wrap">
+
+<!-- ═══ CH1 · HERO ═══ -->
+<section id="ch1">
+  <span class="tab">📁 Dossier // Archive-72</span>
+  <div class="card" style="text-align:center;padding:26px 16px">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:6px">INDEX: ARCH-NEP &nbsp;·&nbsp; VOL. 01 / 10</div>
+    <span class="stamp">404 Found — The Untold Life Dossier</span>
+    <div class="hero-flex" style="margin-top:10px">
+      <div>
+        <div style="font-family:var(--mono);font-weight:700;font-size:clamp(96px,26vw,170px);line-height:.9;letter-spacing:-.04em">VJ</div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted);margin-top:4px">VIJAYESH SAINJU · विजयेश</div>
+      </div>
+      <div>
+        <img src="assets/vj-head-animation.gif" alt="VJ head animation — momocha.com, circa 2014" style="width:78px;margin:8px auto;border:1.5px solid var(--ink);background:#fff">
+        <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--muted);text-align:center">FROM HIS OWN SITE · MOMOCHA.COM</div>
+        <span class="stamp g" style="margin-top:8px">★ Self-Taught ★<br><span style="font-size:9px">since 1999</span></span>
+      </div>
+    </div>
+    <div class="card dotted" style="text-align:left;box-shadow:none;margin-top:18px">
+      <h3>◉ Vijayesh Sainju</h3>
+      <p><strong>b. 12 Dec 1972</strong> · Nepal → Jersey City, USA</p>
+      <p style="font-family:var(--mono);color:var(--red)">Nepal → Jersey City → Dubai → Bangkok → Kathmandu</p>
+      <p>Self-Taught Programmer · Founder · CTO · Educator</p>
+      <p style="font-family:var(--mono);font-size:12px">WhatsApp identity: <strong>"Vj Nepal"</strong> · +977 981-832-9394</p>
+    </div>
+    <div class="term" style="text-align:left">
+      <span class="t">[04:00:12 AM NPT] &gt;</span> gcc -Wall -O2 life_journey.c -o legacy<br>
+      <span class="k">[OK]</span> Compiling memory buffers: 1972..2026<br>
+      <span class="t">&gt;</span> Initializing Kathmandu Valley dial-up modem daemon…<span class="c"></span>
+    </div>
+    <div class="quote" style="text-align:left">"Before the cloud, there was pure curiosity and dial-up tones echoing through the midnight quiet of Nepal."<span class="who">— dossier preamble</span></div>
+    <a class="btn" href="#ch2">Start the walkthrough →<span class="s">10 chapters · 54 years · tap to open file</span></a>
+  </div>
+</section>
+
+<!-- ═══ CH2 · 1972–2000 ═══ -->
+<section id="ch2">
+  <span class="tab">1972 — Roots &amp; First Domain</span>
+  <h2 class="ch">Ghar Panna — The Home Page</h2>
+  <div class="sub">Ch.02 // Nepal → America // school, migration, first login</div>
+  <div class="win">
+    <div class="bar"><span class="btns"><i></i><i></i><i></i></span><span class="title">sainju.com — netscape 4.0</span></div>
+    <div class="url">LOCATION: http://www.sainju.com/ · archived 27 Nov 2004</div>
+    <div class="shot"><img src="assets/shot-sainju-2004.png" alt="sainju.com family website, archived 2004"></div>
+    <div class="cap">Artifact: "A Sainju Family Website" — Vijayesh Sainju &amp; Brenda Perez Sainju, 2004. His first home on the web.</div>
+  </div>
+  <div class="tl">
+    <div class="ev"><span class="yr">1972</span><div class="tx">Born <strong>12 December</strong>, Nepal. Bal Krishna Sainju &amp; Shyamu Sainju.</div></div>
+    <div class="ev"><span class="yr">1980–1996</span><div class="tx"><strong>Budhanilkantha School</strong>, Kathmandu. Batch 10 · roll #120.</div></div>
+    <div class="ev"><span class="yr">1996–2000</span><div class="tx">Leaves Nepal for the United States. <strong>Concord University</strong>, Athens, West Virginia.</div></div>
+    <div class="ev"><span class="yr">~1999</span><div class="tx">First jobs in New York: <strong>"Web Tester"</strong> at Waterhouse Securities. Learns the web from the inside.</div></div>
+    <div class="ev hot"><span class="yr">1999</span><div class="tx"><strong>momocha.com</strong> registered — his first domain. Named after the Newari corn beer. A web design business is born.</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Newari roots</span><span class="chip">Banepa → Kathmandu → NYC</span><span class="chip r">first domain: 1999</span>
+  </div>
+</section>
+
+<!-- ═══ CH3 · MOMOCHA ═══ -->
+<section id="ch3">
+  <span class="tab">2000–2016 — Momocha Era</span>
+  <h2 class="ch">Momocha Web Designers</h2>
+  <div class="sub">Ch.03 // freelance // "$400 websites" // jersey city</div>
+  <div class="win">
+    <div class="bar"><span class="btns"><i></i><i></i><i></i></span><span class="title">momocha.com — web designers</span></div>
+    <div class="url">LOCATION: http://momocha.com/ · archived 18 Dec 2014</div>
+    <div class="shot"><img src="assets/shot-momocha-2014.png" alt="momocha.com homepage, archived 2014"></div>
+    <div class="cap">His own words, 2014: "Affordable but Professional — freelance web designer with 18 years of experience… Here is me smiling."</div>
+  </div>
+  <div class="grid two">
+    <div class="card">
+      <h3>The offer, 2000</h3>
+      <p>$400 / $650 / $900 website packages.</p>
+      <p><strong>$200</strong> for doctors &amp; lawyers (his mom's profession influence).</p>
+      <p style="font-family:var(--mono);font-size:12px">"I need customers. You need great prices. It's a perfect match."</p>
+    </div>
+    <div class="card">
+      <h3>The client list</h3>
+      <p>Kathmandu Inn (London) · unioncity360 · jerseycity360 · Prosurge Tools · Sorbetto · Guru HR · bambibaby · BusinessDost.</p>
+      <p>NYC · Jersey City · Hoboken · Union City · Bayonne · Newark.</p>
+    </div>
+  </div>
+  <div class="polaroid" style="max-width:260px">
+    <img src="assets/golden-web-award.jpg" alt="Golden Web Award Winner badge from momocha.com">
+    <div class="chin">GOLDEN WEB AWARD · momocha.com</div>
+  </div>
+  <div class="quote">"Why should I ask a big web design company about my website — when my 17-year-old nephew can do it?"<span class="who">— VJ, momocha.com (2002–2014)</span></div>
+  <div class="quote">"Most of my clients are friends now… Try calling a big web design company about your printer problems."<span class="who">— VJ, 2014</span></div>
+</section>
+
+<!-- ═══ CH4 · CORPORATE ═══ -->
+<section id="ch4">
+  <span class="tab">2009–2019 — Corporate Years</span>
+  <h2 class="ch">The Ladder &amp; The Crashes</h2>
+  <div class="sub">Ch.04 // banks // insurers // retailers // two bankruptcies</div>
+  <div class="grid two">
+    <div class="card"><h3>ID · Bank of America</h3><p><strong>2010–2011</strong> · VBA, Access, Excel, SQL, .NET — learns enterprise scale.</p></div>
+    <div class="card"><h3>ID · Liberty Mutual</h3><p><strong>2012–2014</strong> · insurance IT, process automation.</p></div>
+    <div class="card"><h3>ID · J.Crew</h3><p><strong>2015–2016</strong> · System Programmer / Business Analyst, retail systems.</p></div>
+    <div class="card"><h3>ID · Cushman &amp; Wakefield</h3><p><strong>2016–2019</strong> · IT Manager, East Rutherford NJ. The highest rung.</p></div>
+  </div>
+  <div class="card" style="border-color:var(--red)">
+    <h3 style="color:var(--red)">⚠ Final decree — twice</h3>
+    <p><strong>2018</strong> — Chapter 13 filed (D.N.J.). Plan dismissed 2019.</p>
+    <p><strong>2019</strong> — Chapter 13 filed again. Dismissed 2020.</p>
+    <p>And through both: kept the freelance clients, kept coding at 4 AM, kept teaching. <strong>The work never stopped.</strong></p>
+  </div>
+  <span class="stamp">Still building · 2018–2020</span>
+</section>
+
+<!-- ═══ CH5 · OMN ═══ -->
+<section id="ch5">
+  <span class="tab">2017 — Open My Network</span>
+  <h2 class="ch">CTO — Points, Badges, Friends</h2>
+  <div class="sub">Ch.05 // learn. engage. empower. prepare.</div>
+  <div class="card">
+    <h3>The leap into social tech</h3>
+    <p>Co-founds <strong>Open My Network</strong> (NYC) — a gamified social network for high-school students: the <strong>LEEP</strong> 30-week program, points, badges, leaderboards.</p>
+    <p>Role: <strong>Chief Technology Officer</strong>. "Registered vendor of the NYC DOE" (per site). 10K+ students claimed.</p>
+  </div>
+  <div class="chips">
+    <span class="chip r">CTO title #1</span><span class="chip">gamification since 2017</span><span class="chip">K-12 before ChimpVine</span>
+  </div>
+  <div class="quote">"Occasionally guilty of turning serious ideas into games."<span class="who">— his LinkedIn, to this day</span></div>
+</section>
+
+<!-- ═══ CH6 · AI WAVE ═══ -->
+<section id="ch6">
+  <span class="tab">2021–2023 — The AI Wave</span>
+  <h2 class="ch">From Freelancer to CEO</h2>
+  <div class="sub">Ch.06 // danson solutions // chimpvine</div>
+  <div class="grid two">
+    <div class="card"><h3>Danson Training — Sep 2021</h3><p>First webinar: <strong>"Will AI take away human jobs?"</strong> Covered by ICT Frame. A subsidiary of Danson Solution is announced.</p></div>
+    <div class="card"><h3>Danson Solutions — 2023</h3><p>Rises to <strong>CEO</strong>. Hattisar, Kathmandu delivery arm. Training, marketing, AI for companies.</p></div>
+  </div>
+  <div class="win">
+    <div class="bar"><span class="btns"><i></i><i></i><i></i></span><span class="title">chimpvine.com — live</span></div>
+    <div class="url">https://www.chimpvine.com/ · screenshot Sep 2026</div>
+    <div class="shot"><img src="assets/shot-chimpvine-live.png" alt="ChimpVine homepage"></div>
+    <div class="cap">ChimpVine — gamified AI learning for K-12. Launched 23 Mar 2023 (Business 360, The Himalayan Times, Techmandu).</div>
+  </div>
+  <div class="press">
+    <div class="p"><b>Business 360</b>"ChimpVine — a product of Danson Solutions, parent IT company founded in 2020."</div>
+    <div class="p"><b>The Himalayan Times</b>ChimpVine launch coverage — gamified learning, Kathmandu.</div>
+    <div class="p"><b>The Annapurna Express</b>Executives quoted: Sashya Paudel (Exec Dir), Shristi Shrestha (Sales Head).</div>
+    <div class="p"><b>Techmandu</b>"$10/month — 50% off the $20 list price." K-12, AI quizzes, badges.</div>
+  </div>
+</section>
+
+<!-- ═══ CH7 · EMPIRE ═══ -->
+<section id="ch7">
+  <span class="tab">2024–2026 — Global Footprint</span>
+  <h2 class="ch">One Phone Number, Five Countries</h2>
+  <div class="sub">Ch.07 // entities // jersey city · kathmandu · dubai</div>
+  <div class="logos">
+    <div class="logo"><img src="assets/danson-solutions-logo.webp" alt="Danson Solutions"><div class="n">Danson Solutions LLC</div><span class="r">CEO · Jersey City</span></div>
+    <div class="logo"><img src="assets/chimpvine-logo.png" alt="ChimpVine"><div class="n">ChimpVine</div><span class="r">K-12 AI Learning</span></div>
+    <div class="logo"><img src="assets/davson360-logo.png" alt="Davson360"><div class="n">Davson360</div><span class="r">AI Education · Dubai</span></div>
+    <div class="logo"><img src="assets/dansonnepal-logo.webp" alt="Danson Nepal"><div class="n">Danson Nepal</div><span class="r">Hattisar, Kathmandu</span></div>
+    <div class="logo"><img src="assets/sainju-banner-2004.gif" alt="sainju.com banner 2004" style="image-rendering:pixelated"><div class="n">sainju.com</div><span class="r">since 1999 · family archive</span></div>
+    <div class="logo"><img src="assets/golden-web-award.jpg" alt="Golden Web Award"><div class="n">Momocha</div><span class="r">the original · 2000–2016</span></div>
+  </div>
+  <div class="win">
+    <div class="bar"><span class="btns"><i></i><i></i><i></i></span><span class="title">dansonsolutions.com — live</span></div>
+    <div class="url">https://dansonsolutions.com/ · screenshot Sep 2026</div>
+    <div class="shot"><img src="assets/shot-danson-live.png" alt="Danson Solutions homepage"></div>
+    <div class="cap">Parent company today: AI training, automation, digital solutions.</div>
+  </div>
+  <div class="chips">
+    <span class="chip r">Nepal</span><span class="chip r">USA</span><span class="chip r">UAE</span><span class="chip r">Thailand</span><span class="chip r">Canada</span>
+    <span class="chip">shared line: +1 201-899-0314</span>
+  </div>
+</section>
+
+<!-- ═══ CH8 · TEACHER ═══ -->
+<section id="ch8">
+  <span class="tab">2026 — Teacher Era</span>
+  <h2 class="ch">The Mentor Phase</h2>
+  <div class="sub">Ch.08 // MoUs // ministries // classrooms</div>
+  <div class="grid two">
+    <div class="card"><h3>AI4PEN × Rotary Club of Yala</h3><p>Teacher-training at Kitini Secondary School — <strong>25 teachers, 10 weeks</strong>. Powered by Danson.</p></div>
+    <div class="card"><h3>Ace Institute MoU</h3><p>Signed in Kathmandu, 3 Jun 2026 — guest lectures, internships, placements for students.</p></div>
+    <div class="card"><h3>Government &amp; NGOs</h3><p>AI training for the <strong>Ministry of Forests / REDD+ sector</strong>; sessions with IUCN; Global College of Management.</p></div>
+    <div class="card"><h3>Asia CEO Community</h3><p>Fen-i Space Bangkok (Jan 2026), PACE Forward Thailand, SHIFT360 leadership labs, Skills for Change Toronto.</p></div>
+  </div>
+  <div class="term" style="text-align:left">
+    <span class="t">[2026] &gt;</span> mission --status<br>
+    <span class="k">[OK]</span> "AI will transform roles, not eliminate people."<br>
+    <span class="t">&gt;</span> students_reached = "400+ (self-reported)" · teachers = "25+" <span class="c"></span>
+  </div>
+</section>
+
+<!-- ═══ CH9 · WORDS ═══ -->
+<section id="ch9">
+  <span class="tab">His Words — 25 Years of Aphorisms</span>
+  <h2 class="ch">In His Own Hand</h2>
+  <div class="sub">Ch.09 // forums // essays // linkedin // verbatim</div>
+  <div class="quote">"I believe everyone I know by name and face is a friend."<span class="who">— sainju.com, 2002</span></div>
+  <div class="quote">"I am a programmer."<span class="who">— sainju.com profile, 2002</span></div>
+  <div class="quote">"Here is me smiling."<span class="who">— momocha.com contact page, caption under his own photo</span></div>
+  <div class="quote">"Contet is King. Traffic is Queen." <span style="color:var(--red);font-size:11px">(sic — typo kept, as written in 2016)</span><span class="who">— momocha.com blog</span></div>
+  <div class="quote">"AI will transform roles, not eliminate people."<span class="who">— Danson, 2025</span></div>
+  <div class="quote">"Occasionally guilty of turning serious ideas into games."<span class="who">— LinkedIn, present</span></div>
+</section>
+
+<!-- ═══ CH10 · CLOSING ═══ -->
+<section id="ch10">
+  <span class="tab">Doc_Ref: Epilogue_Terminal_2026 [Declassified]</span>
+  <div class="card" style="text-align:center;padding:30px 16px">
+    <span class="stamp big">★ Still Building ★<br>1972 — 2026+</span>
+    <h2 class="ch" style="margin-top:18px">54 years old. Five countries.<br>One website at a time.</h2>
+    <div class="term" style="text-align:left">
+      <span class="t">&gt;</span> From dial-up modems in the Kathmandu valley to global cloud-native systems,<br>&nbsp;&nbsp;the work remains unfinished. The next terminal is always opening.<span class="c"></span>
+    </div>
+    <div class="card dotted" style="box-shadow:none;text-align:left">
+      <h3>▷ Telex Dispatch — <span style="color:var(--green)">ONLINE</span></h3>
+      <p>Direct line to the archive's subject: <strong>+977 981-832-9394</strong> ("Vj Nepal" on WhatsApp).</p>
+    </div>
+    <a class="btn" href="https://wa.me/9779818329394?text=Hi%20VJ%20—%20I%20read%20your%20whole%20dossier.%20It's%20inspiring." target="_blank" rel="noopener">Transmit telegram / message →<span class="s">opens WhatsApp · wa.me/9779818329394</span></a>
+    <a class="btn ghost" href="#ch1">↺ Restart walkthrough</a>
+    <div class="stamp g" style="margin-top:6px">Archive verification · sealed</div>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px">Official records &amp; walkthrough docket of Vijayesh Sainju.<br>Kathmandu · New York · Dubai.</p>
+  </div>
+  <div class="foot">
+    Session complete // 1972–2026 // still compiling…<br>
+    Compiled Sep 2026 · sources: his own websites, press, public records
+  </div>
+</section>
+
+</main>
+
+<script>
+// scroll-spy for the year rail
+const links = [...document.querySelectorAll('.rail a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+const spy = () => {
+  const y = scrollY + innerHeight * .35;
+  let idx = 0;
+  secs.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+  links.forEach((a, i) => a.classList.toggle('active', i === idx));
+  const codes = ['SEC-72-NP','SEC-99-NP','SEC-12-NP','SEC-16-NP','SEC-17-NP','SEC-21-NP','SEC-EMPIRE','SEC-26-NP','SEC-WORDS','SEC-NOW'];
+  document.getElementById('sec').textContent = codes[idx] || 'SEC-72-NP';
+};
+addEventListener('scroll', spy, { passive: true }); spy();
+</script>
+</body>
+</html>

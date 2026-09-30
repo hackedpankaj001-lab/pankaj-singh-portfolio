@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pankaj@ktm — Build Log 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1116; --s1:#161B22; --well:#090D12; --line:#30363D;
+  --green:#3FB950; --green-hi:#67df70; --violet:#7C5CFF; --amber:#E3B341; --red:#F85149;
+  --txt:#F0F6FC; --mut:#8B949E;
+  --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'Inter',system-ui,sans-serif;
+  --tabh:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:linear-gradient(rgba(22,27,34,.4) .5px,transparent .5px),linear-gradient(90deg,rgba(22,27,34,.4) .5px,transparent .5px);background-size:32px 32px}
+img{max-width:100%;display:block}
+a{color:var(--green)}
+/* ── header ── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(14,17,22,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11.5px}
+.hdr .l{display:flex;align-items:center;gap:8px;color:var(--mut)}
+.hdr .l i{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:blink 1.4s step-start infinite}
+@keyframes blink{50%{opacity:.25}}
+.hdr .r{color:var(--mut);font-size:11px}
+.desknav{display:none;gap:16px}
+.desknav a{color:var(--mut);font-size:11px;letter-spacing:.1em;text-decoration:none;padding:4px 2px;border-top:2px solid transparent}
+.desknav a.on{color:var(--green);border-top-color:var(--green)}
+.desknav a[data-t="hire"]{color:var(--amber)}
+.desknav a[data-t="hire"].on{color:var(--amber);border-top-color:var(--amber);text-shadow:0 0 10px rgba(227,179,65,.6)}
+/* ── EXHIBIT A chip (always pops) ── */
+.exhibit-chip{background:var(--amber)!important;color:#0E1116!important;font-weight:800;letter-spacing:.08em;padding:5px 12px!important;border-radius:4px!important;border:none!important;box-shadow:2px 2px 0 #000;transform:rotate(-1.5deg);display:inline-flex;align-items:center;gap:7px;transition:transform .2s,box-shadow .2s}
+.exhibit-chip:hover{transform:rotate(0) scale(1.07);box-shadow:3px 4px 0 #000}
+.exhibit-chip .rec{width:8px;height:8px;border-radius:50%;background:#F85149;display:inline-block;animation:blink 1s step-start infinite}
+.exhibit-chip:active{transform:translate(1px,1px) rotate(0);box-shadow:1px 1px 0 #000}
+/* mobile header exhibit button (tabbar has 4 tabs; header right gets it) */
+.hdr .ex-m{display:inline-flex}
+@media (min-width:900px){.hdr .ex-m{display:none}}
+@media (max-width:899px){.hdr .r{display:none}}
+/* ── modal ── */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:14px}
+.overlay.open{display:flex}
+.modal{width:min(940px,100%);height:min(92vh,900px);background:var(--s1);border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 0 rgba(0,0,0,.7);display:flex;flex-direction:column;overflow:hidden;animation:pop .22s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(.9) translateY(14px);opacity:0}to{transform:none;opacity:1}}
+.modal .mbar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--well);border-bottom:1px solid var(--line);font-size:11px;color:var(--mut);flex:none}
+.modal .mbar .dots{display:flex;gap:6px}
+.modal .mbar .dots i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.modal .mbar .dots i:nth-child(1){background:var(--red)}.modal .mbar .dots i:nth-child(2){background:var(--amber)}.modal .mbar .dots i:nth-child(3){background:var(--green)}
+.modal .mbar .x{margin-left:auto;background:var(--red);color:#fff;border:none;font-family:var(--mono);font-weight:800;font-size:12px;padding:5px 11px;border-radius:3px;cursor:pointer;box-shadow:1.5px 1.5px 0 #000}
+.modal .mbar .x:active{transform:translate(1px,1px);box-shadow:0 0 0 #000}
+.modal .banner{background:var(--amber);color:#0E1116;font-weight:800;font-size:clamp(11px,2.6vw,14px);letter-spacing:.05em;padding:9px 12px;text-align:center;text-transform:uppercase;flex:none;animation:blinkbg 2s step-start infinite}
+@keyframes blinkbg{50%{filter:brightness(1.18)}}
+.modal iframe{flex:1;border:none;width:100%;background:var(--paper)}
+/* ── layout ── */
+main{max-width:680px;margin:0 auto;padding:64px 16px calc(var(--tabh) + 36px)}
+section{margin-bottom:56px;scroll-margin-top:60px}
+.path{font-size:11px;color:var(--mut);letter-spacing:.04em;margin-bottom:10px;word-break:break-all}
+.path b{color:var(--green);font-weight:500}
+h2{font-size:clamp(20px,5vw,28px);font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
+.lead{color:var(--mut);font-size:13.5px;margin-bottom:16px}
+/* ── terminal window ── */
+.win{background:var(--s1);border:1px solid var(--line);border-radius:4px;box-shadow:0 4px 0 rgba(0,0,0,.6);overflow:hidden;margin-bottom:16px}
+.win .bar{height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid var(--line);font-size:11px;color:var(--mut)}
+.win .bar .dots{display:flex;gap:6px}
+.win .bar .dots i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.win .bar .dots i:nth-child(1){background:var(--red)} .win .bar .dots i:nth-child(2){background:var(--amber)} .win .bar .dots i:nth-child(3){background:var(--green)}
+.win .bar .p{margin-left:auto;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:60%}
+.win .body{background:var(--well);padding:16px}
+.k{color:var(--green)} .v{color:var(--txt)} .c{color:var(--mut)} .ppl{color:var(--violet)} .amb{color:var(--amber)} .err{color:var(--red)}
+.cursor{display:inline-block;width:9px;height:16px;background:var(--green);vertical-align:-3px;animation:blink 1s step-start infinite}
+.prompt{color:var(--green)}
+.prompt::before{content:"pankaj@ktm : ~$ ";color:var(--green);font-weight:600}
+/* ── cards ── */
+.card{background:var(--s1);border:1px solid var(--line);border-radius:4px;padding:16px;box-shadow:0 4px 0 rgba(0,0,0,.55);margin-bottom:14px;position:relative}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:8px}
+.card h3 .g{color:var(--green)} .card h3 .a{color:var(--amber)} .card h3 .v{color:var(--violet)}
+.card p{color:var(--mut);font-size:13px;margin-bottom:6px}
+.card p b,.card p strong{color:var(--txt)}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:14px}
+/* ── stickers ── */
+.stickers{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.sticker{border:1.5px solid #F0F6FC;border-radius:6px;background:#111;padding:7px 12px;font-size:11.5px;font-weight:800;letter-spacing:.06em;box-shadow:2px 3px 0 #000;transition:transform .25s cubic-bezier(.34,1.56,.64,1);cursor:default;text-transform:uppercase}
+.sticker:hover{transform:rotate(0deg) scale(1.06)!important}
+.sticker:nth-child(4n+1){transform:rotate(-3deg);background:var(--green);color:#0E1116;border-color:#F0F6FC}
+.sticker:nth-child(4n+2){transform:rotate(2deg);background:var(--violet);color:#fff}
+.sticker:nth-child(4n+3){transform:rotate(-1.5deg);background:var(--amber);color:#0E1116}
+.sticker:nth-child(4n+4){transform:rotate(4deg);background:#111;color:var(--green);border-color:var(--green)}
+/* ── amber tape ── */
+.tape{background:var(--amber);color:#0E1116;font-weight:800;font-size:12px;letter-spacing:.05em;padding:10px 14px;transform:rotate(-1.5deg);box-shadow:2px 3px 0 #000;margin:4px 4px 18px;display:inline-block;text-transform:uppercase}
+/* ── stat tiles ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--s1);border:1px solid var(--line);border-radius:4px;padding:12px 10px;text-align:center}
+.stat .lab{font-size:9.5px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.stat .val{font-size:14px;font-weight:700}
+.stat .val.g{color:var(--green)} .stat .val.a{color:var(--amber)} .stat .val.p{color:var(--violet)}
+/* ── buttons ── */
+.btn{display:block;width:100%;text-align:center;font-family:var(--mono);font-weight:700;font-size:14.5px;letter-spacing:.04em;background:var(--green);color:#0E1116;border:none;border-radius:4px;box-shadow:2px 2px 0 #F0F6FC;padding:15px 12px;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:transform .08s,box-shadow .08s;margin-bottom:12px}
+.btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #F0F6FC}
+.btn::before{content:"▶ "}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--green);box-shadow:none}
+.btn.ghost::before{content:""}
+.btn.violet{background:var(--violet);color:#fff}
+/* ── commit/timeline rows ── */
+.tl{border-left:1.5px solid var(--line);margin:0 0 16px 6px;padding-left:18px}
+.tl .ev{position:relative;padding-bottom:16px}
+.tl .ev::before{content:"";position:absolute;left:-24px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--bg);box-shadow:0 0 0 1.5px var(--line)}
+.tl .yr{color:var(--green);font-weight:700;font-size:12.5px}
+.tl .tx{color:var(--mut);font-size:13px}
+.tl .tx b{color:var(--txt)}
+/* ── project cards w/ corner sticker tag ── */
+.proj{background:var(--s1);border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden}
+.proj .tag{position:absolute;top:10px;right:-30px;transform:rotate(35deg);background:var(--violet);color:#fff;font-size:9px;font-weight:800;letter-spacing:.1em;padding:4px 34px;text-transform:uppercase}
+.proj .tag.am{background:var(--amber);color:#0E1116}
+.proj .tag.gr{background:var(--green);color:#0E1116}
+.proj h3{font-size:15px;margin-bottom:8px;padding-right:64px}
+.proj .meta{font-size:11px;color:var(--mut);letter-spacing:.05em;margin-bottom:8px}
+.proj p{color:var(--mut);font-size:13px;margin-bottom:8px}
+.proj .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.proj .links a{font-size:11.5px;border:1px solid var(--line);padding:6px 10px;border-radius:4px;text-decoration:none;color:var(--green);background:var(--well);letter-spacing:.04em}
+.proj .links a:hover{border-color:var(--green)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.pill{font-size:10px;border:1px solid var(--line);color:var(--mut);padding:3px 8px;border-radius:99px;letter-spacing:.05em}
+.pill.g{color:var(--green);border-color:rgba(63,185,80,.5)}
+.pill.p{color:var(--violet);border-color:rgba(124,92,255,.5)}
+.pill.a{color:var(--amber);border-color:rgba(227,179,65,.5)}
+/* ── screenshot gallery ── */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.gallery figure{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--s1)}
+.gallery img{aspect-ratio:9/16;object-fit:cover;object-position:top;width:100%}
+.gallery figcaption{font-size:9px;color:var(--mut);padding:6px 6px;letter-spacing:.04em;text-align:center}
+/* ── progress bars ── */
+.prog{margin-bottom:12px}
+.prog .row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.prog .row .pc{color:var(--mut)}
+.prog .bar{height:12px;background:var(--well);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--green);background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.18) 0 6px,transparent 6px 12px)}
+.prog.warn .bar i{background-color:var(--amber)}
+.prog.low .bar i{background-color:var(--red)}
+/* ── warning sticker ── */
+.warnbox{border:1.5px dashed var(--amber);background:rgba(227,179,65,.06);border-radius:4px;padding:10px 12px;font-size:11.5px;color:var(--amber);letter-spacing:.03em;margin-bottom:14px;text-transform:uppercase}
+/* ── tab bar ── */
+.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(22,27,34,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);height:var(--tabh);display:flex;justify-content:space-around;align-items:center;padding-bottom:env(safe-area-inset-bottom)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--mut);text-decoration:none;font-size:9.5px;letter-spacing:.1em;position:relative;padding-top:6px}
+.tabbar a .ic{font-size:17px;line-height:1}
+.tabbar a.on{color:var(--green)}
+.tabbar a.on::before{content:"";position:absolute;top:0;left:14%;right:14%;height:2px;background:var(--green);box-shadow:0 0 8px var(--green)}
+/* ── disk receipts gallery ── */
+.shots{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-bottom:12px;-webkit-overflow-scrolling:touch}
+.shots::-webkit-scrollbar{height:6px}
+.shots::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.shot{flex:0 0 88%;scroll-snap-align:start;border:1px solid var(--line);border-radius:4px;background:var(--s1);overflow:hidden;box-shadow:0 4px 0 rgba(0,0,0,.55);text-decoration:none}
+.shot img{width:100%;display:block}
+.shot .cap{font-size:10px;color:var(--mut);letter-spacing:.06em;padding:7px 9px;border-top:1px solid var(--line);text-transform:uppercase}
+.shot .cap b{color:var(--green);font-weight:600}
+@media (min-width:900px){
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:14px;overflow:visible}
+  .shot{flex:none}
+}
+/* ── lightbox for disk shots ── */
+.lbover{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:14px}
+.lbover.open{display:flex}
+.lb{width:min(1100px,100%);max-height:94vh;display:flex;flex-direction:column;background:var(--s1);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 10px 0 rgba(0,0,0,.7);animation:pop .2s cubic-bezier(.34,1.56,.64,1)}
+.lb .lbar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--well);border-bottom:1px solid var(--line);font-size:11px;color:var(--mut);flex:none}
+.lb .lbar .dots{display:flex;gap:6px}
+.lb .lbar .dots i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.lb .lbar .dots i:nth-child(1){background:var(--red)}.lb .lbar .dots i:nth-child(2){background:var(--amber)}.lb .lbar .dots i:nth-child(3){background:var(--green)}
+.lb .lbar .x{margin-left:auto;background:var(--red);color:#fff;border:none;font-family:var(--mono);font-weight:800;font-size:12px;padding:6px 12px;border-radius:3px;cursor:pointer;box-shadow:1.5px 1.5px 0 #000}
+.lb .lbar .x:active{transform:translate(1px,1px);box-shadow:0 0 0 #000}
+.lb .imgwrap{position:relative;overflow:auto;background:#000;flex:1}
+.lb .imgwrap img{width:100%;display:block;max-height:78vh;object-fit:contain}
+.lb .nav{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-top:1px solid var(--line);flex:none}
+.lb .nav button{background:var(--s1);border:1px solid var(--line);color:var(--green);font-family:var(--mono);font-weight:700;font-size:12px;padding:8px 14px;border-radius:3px;cursor:pointer;box-shadow:1.5px 1.5px 0 #000}
+.lb .nav button:active{transform:translate(1px,1px);box-shadow:0 0 0 #000}
+.lb .nav button:disabled{opacity:.35;cursor:default;box-shadow:none}
+.lb .nav .t{font-size:10.5px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+/* ── footer ── */
+.foot{text-align:center;font-size:10.5px;color:var(--mut);letter-spacing:.1em;line-height:2.1;text-transform:uppercase;border-top:1px dashed var(--line);padding-top:18px}
+/* ── desktop ── */
+@media (min-width:900px){
+  :root{--tabh:0px}
+  .tabbar{display:none}
+  .desknav{display:flex}
+  main{max-width:860px;padding-top:80px}
+  .grid.two{grid-template-columns:1fr 1fr}
+  .grid.three{grid-template-columns:1fr 1fr 1fr}
+  .stats{max-width:520px}
+  .gallery{grid-template-columns:repeat(4,1fr);max-width:720px}
+  section{margin-bottom:76px}
+  .boot-flex{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
+  .boot-flex .tape{margin-top:8px}
+}
+@media (max-width:420px){ .stats{grid-template-columns:1fr} .gallery{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <span class="l"><i></i>KTM, NP (NPT) · <b style="color:var(--txt)">Build Log</b></span>
+  <nav class="desknav">
+    <a href="#origin" data-t="journey">JOURNEY</a>
+    <a href="#stack" data-t="stack">STACK</a>
+    <a href="#builds" data-t="builds">BUILDS</a>
+    <a href="#hire" data-t="hire">WHY ME</a>
+    <a href="#now" data-t="now">NOW</a>
+    <a href="dossier/index.html" class="exhibit-chip" onclick="return openExhibit()"><span class="rec"></span>EXHIBIT A ↗</a>
+  </nav>
+  <a href="dossier/index.html" class="exhibit-chip ex-m" onclick="return openExhibit()"><span class="rec"></span>EXHIBIT A ↗</a>
+  <span class="r">tty1:bash</span>
+</header>
+
+<main>
+
+<!-- ═══ BOOT ═══ -->
+<section id="boot">
+  <div class="path"><b>/home/pankaj/boot.sh</b> [INIT 2026-09]</div>
+  <div class="boot-flex">
+    <div>
+      <div class="win">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">/home/pankaj/boot.sh</span></div>
+        <div class="body">
+          <div class="prompt" style="color:var(--green);font-weight:600">exec --prompt</div>
+          <div style="font-size:clamp(34px,8vw,54px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:10px 0 8px">I BUILD THINGS.<span class="cursor" style="height:.8em;width:.5em"></span></div>
+          <p class="c">Compiling curiosity into production code directly from a rooftop room in Kathmandu.</p>
+          <div style="margin-top:16px;border-top:1px dashed var(--line);padding-top:14px">
+            <div style="color:var(--green)">&gt; whoami</div>
+            <div style="font-size:22px;font-weight:700;color:var(--green-hi)">pankaj-singh</div>
+            <div style="color:var(--green);margin-top:8px">&gt; cat /etc/bio</div>
+            <div class="c" style="font-size:13px">age:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="k">18</span><br>
+            location:&nbsp;&nbsp; Kathmandu, NP <span class="c">[27.7172°N 85.3240°E]</span><br>
+            grade:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="v">11th (Science)</span><br>
+            college:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="v">Bridge Water Intl — scholarship</span><br>
+            hostel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="v">Baneshwor, KTM</span> <span class="c">// home: Sarlahi</span><br>
+            english:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="k">fluent</span> <span class="c">// spoken + written</span><br>
+            status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="amb">● autodidact · shipping daily</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tape">⚡ Freelancing since 11th grade · Rs 6–8k/mo &nbsp;· #early_grind</div>
+    </div>
+    <div>
+      <div class="win" style="transform:rotate(-1deg);box-shadow:3px 5px 0 rgba(0,0,0,.6)">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">~/profile.jpg — pankaj, 18 · ktm</span></div>
+        <div class="body" style="padding:8px">
+          <img src="assets/profile.jpg" alt="Pankaj Singh — Kathmandu" style="border:1px solid var(--line);border-radius:2px;width:100%;aspect-ratio:16/9;object-fit:cover">
+          <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--mut);margin-top:6px"><span>self-taught · 4am coder</span><span style="color:var(--violet)">27.71°N 85.32°E</span></div>
+        </div>
+      </div>
+      <div class="win">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">workspace::ktm_nightshift</span></div>
+        <div class="body" style="padding:10px">
+          <div style="background:#000;border:1px solid var(--line);border-radius:4px;height:190px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center">
+            <svg viewBox="0 0 300 190" width="100%" height="100%" aria-label="Kathmandu night workspace">
+              <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1026"/><stop offset="1" stop-color="#1a1030"/></linearGradient></defs>
+              <rect width="300" height="190" fill="url(#sky)"/>
+              <circle cx="250" cy="34" r="14" fill="#f5e6c8" opacity=".85"/>
+              <g fill="#141a33"><rect x="0" y="120" width="300" height="70"/></g>
+              <g fill="#1d2547"><rect x="20" y="96" width="34" height="60"/><rect x="70" y="104" width="26" height="52"/><rect x="210" y="92" width="40" height="64"/><rect x="258" y="108" width="30" height="48"/></g>
+              <g fill="#ffd866" opacity=".8"><rect x="26" y="104" width="5" height="5"/><rect x="36" y="112" width="5" height="5"/><rect x="78" y="112" width="5" height="5"/><rect x="220" y="100" width="5" height="5"/><rect x="234" y="116" width="5" height="5"/><rect x="266" y="116" width="5" height="5"/></g>
+              <path d="M110 60 l14 30 h-28 z" fill="#111" stroke="#333"/><rect x="120" y="52" width="6" height="40" fill="#9a3b2f"/>
+              <rect x="112" y="46" width="22" height="10" fill="#c7442e"/>
+              <rect x="90" y="150" width="120" height="40" fill="#0d1117" stroke="#30363d"/>
+              <rect x="100" y="158" width="100" height="26" fill="#090d12"/>
+              <text x="106" y="174" font-family="monospace" font-size="10" fill="#3FB950">&gt; ship --daily</text>
+              <g stroke="#3FB950" stroke-width="1" opacity=".55"><line x1="0" y1="146" x2="300" y2="146"/></g>
+            </svg>
+            <div style="position:absolute;bottom:6px;left:8px;font-size:9.5px;color:var(--mut)">workspace::ktm_nightshift</div>
+            <div style="position:absolute;bottom:6px;right:8px;font-size:9.5px;color:var(--violet)">27°C / 82% HUM</div>
+          </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="lab">kernel</div><div class="val g">self-taught</div></div>
+        <div class="stat"><div class="lab">uptime</div><div class="val a">3+ yrs</div></div>
+        <div class="stat"><div class="lab">repos</div><div class="val p">40+</div></div>
+      </div>
+    </div>
+  </div>
+  <a class="btn" href="#origin">run ./my_story.sh (trace origins)</a>
+  <a class="btn ghost" href="dossier/index.html" onclick="return openExhibit()" style="border-color:var(--amber);color:var(--amber)">📂 EXHIBIT A — here's what I got about you from the internet →</a>
+  <div class="foot" style="border:none;padding-top:6px">↓ scroll · the journey log begins</div>
+</section>
+
+<!-- ═══ ORIGIN ═══ -->
+<section id="origin">
+  <div class="path"><b>/home/pankaj/journey/01-origin.md</b> — read before writing</div>
+  <h2>Before the cloud<span class="cur">_</span></h2>
+  <p class="lead">No internet in my town. So I started where the screen was.</p>
+  <div class="tl">
+    <div class="ev"><span class="yr">roots</span><div class="tx"><b>Home: Sarlahi.</b> Came to Kathmandu for studies — now on a <b>scholarship at Bridge Water International College, Sinamangal</b>, living in a hostel in <b>Baneshwor</b>. Science, 11th grade, weekday brain on school, evening brain on builds.</div></div>
+    <div class="ev"><span class="yr">age 14 · ~2022</span><div class="tx"><b>Trading crypto at fourteen.</b> While other kids played games, I was reading charts, learning markets, losing and compounding — self-taught economics from YouTube and whitepapers on a slow connection. First lesson: risk management, the hard way.</div></div>
+    <div class="ev"><span class="yr">the TV years</span><div class="tx"><b>I coded on an actual TV.</b> No monitor, no laptop lab — a television as the display, typing out programs with no internet to copy from. No Stack Overflow, no AI. Trial, error, restart. That's where the autodidact instinct was forged.</div></div>
+    <div class="ev"><span class="yr">the drought</span><div class="tx"><b>Town with no internet.</b> I'd plan code on paper, then execute it in bursts whenever connectivity existed. Constraints became a design style — build offline-first, ship fast, waste nothing.</div></div>
+    <div class="ev"><span class="yr">cybersecurity phase</span><div class="tx"><b>Tried cybersecurity — didn't stick.</b> What stuck: <b>OSINT</b>. Recon, footprinting, people-searches, archive digs. That training is exactly why I could pull a complete file on the founder of Danson Solutions before this call. <b>The dossier on this site is my homework.</b></div></div>
+    <div class="ev"><span class="yr">2023–now</span><div class="tx"><b>Tried a lot of things.</b> Crypto, scrapers, bots (WhatsApp <b>and Instagram</b>), video generation, faceless YouTube channels, casual video editing, APK reverse-engineering, calling systems, freelancing for local clients. Some worked, most didn't. <b>The 40+ folders on my disk are the residue of real experiments</b> — not coursework.</div></div>
+  </div>
+  <div class="quote" style="border:1px dashed var(--green);background:var(--s1);border-radius:4px;padding:14px;font-size:13px;color:var(--mut)">"I'm not a bootcamp graduate. I'm the guy who learned by needing the thing to work — <span style="color:var(--green)">today, at 18, I freelance for Rs 6–8k/mo and build industry-level apps at night.</span>"</div>
+</section>
+
+<!-- ═══ STACK ═══ -->
+<section id="stack">
+  <div class="path"><b>/home/pankaj/stack</b> — 16 tools in rotation</div>
+  <h2>The stack wall<span class="cur">_</span></h2>
+  <p class="lead">Three mobile stacks, two API styles, one brain. Pick a sticker.</p>
+  <div class="stickers">
+    <span class="sticker">Next.js 16</span><span class="sticker">React 19</span><span class="sticker">Expo RN</span><span class="sticker">Flutter</span>
+    <span class="sticker">Kotlin</span><span class="sticker">Node</span><span class="sticker">GraphQL</span><span class="sticker">Prisma</span>
+    <span class="sticker">Supabase</span><span class="sticker">MongoDB</span><span class="sticker">Python</span><span class="sticker">PHP</span>
+    <span class="sticker">Docker</span><span class="sticker">Vercel</span><span class="sticker">Tailwind</span><span class="sticker">Socket.io</span>
+    <span class="sticker">OSINT</span><span class="sticker">FFmpeg / Editing</span>
+  </div>
+  <div class="grid three">
+    <div class="card"><h3><span class="g">FRONTEND</span></h3><p>Next 16 · React 19 · shadcn · framer-motion · AntD</p></div>
+    <div class="card"><h3><span class="p">BACKEND</span></h3><p>GraphQL (Apollo) · Prisma · Express · FastAPI · PHP</p></div>
+    <div class="card"><h3><span class="a">MOBILE</span></h3><p>Expo/React Native · Flutter · native Kotlin/Gradle</p></div>
+  </div>
+
+  <div class="path" style="margin-top:26px"><b>/home/pankaj/ai-toolbelt</b> — vibe-coding is the default mode</div>
+  <h2>AI toolbelt<span class="cur">_</span></h2>
+  <div class="win">
+    <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">~/toolbelt/status</span></div>
+    <div class="body" style="font-size:12.5px;line-height:1.9">
+      <span class="k">✓</span> <span class="v">opencode</span> <span class="c">— primary agent, drives the terminal</span><br>
+      <span class="k">✓</span> <span class="v">Claude</span> <span class="c">— architecture, refactors, reviews</span><br>
+      <span class="k">✓</span> <span class="v">Codex</span> <span class="c">— second opinion on tricky code</span><br>
+      <span class="k">✓</span> <span class="v">Cline / Continue</span> <span class="c">— in-editor pair programming</span><br>
+      <span class="k">✓</span> <span class="v">Copilot / Gemini CLI</span> <span class="c">— autocomplete & quick scripts</span><br>
+      <span class="ppl">◈</span> <span class="v">Google Stitch</span> <span class="c">— 22 UI screens shipped from prompts</span><br>
+      <span class="amb">◈</span> <span class="v">OpenAI · Groq (LLaMA 3.3) · Gemini TTS · transformers.js</span> <span class="c">— runtime APIs</span><br>
+      <span class="prompt"></span><span class="cursor"></span>
+    </div>
+  </div>
+  <div class="path" style="margin-top:26px"><b>/home/pankaj/stitch/</b> — design output</div>
+  <h2>22 screens from prompts<span class="cur">_</span></h2>
+  <div class="gallery">
+    <figure><img src="assets/stitch-boot.png" alt="Stitch screen — terminal boot"><figcaption>boot.sh</figcaption></figure>
+    <figure><img src="assets/stitch-vhakari.png" alt="Stitch screen — vhakari"><figcaption>vhakari.md</figcaption></figure>
+    <figure><img src="assets/stitch-ai.png" alt="Stitch screen — ai builds"><figcaption>ai_builds.md</figcaption></figure>
+  </div>
+  <div class="pills"><span class="pill g">Cleritax</span><span class="pill p">Student OS</span><span class="pill a">CheatCode</span><span class="pill">Sajilo Web</span><span class="pill">Quiz Video</span><span class="pill">Audiobook</span><span class="pill">Avis Plumbing</span></div>
+</section>
+
+<!-- ═══ BUILDS ═══ -->
+<section id="builds">
+  <div class="path"><b>/home/pankaj/builds/</b> — what actually ships</div>
+  <h2>The builds<span class="cur">_</span></h2>
+  <p class="lead">Real repos, real stacks, real users. Tap a link to open live.</p>
+
+  <div class="proj">
+    <span class="tag gr">flagship</span>
+    <h3><span class="g">▸ Vhakari</span> — cross-platform app + admin</h3>
+    <div class="meta">EXPO RN · NEXT.JS · 2× GRAPHQL APIs · PRISMA · JWT · PUSH</div>
+    <p>Monorepo: <b>app/</b> (Expo ~38, Apollo, Redux Toolkit, Firebase) + <b>admin/</b> (Next.js, AntD, Prisma, AWS) + <b>app-api/ &amp; admin-api/</b> (Apollo Server, codegen'd GraphQL, expo-server-sdk push). 4 packages, per-client codegen configs, migrations. <b>v1.0.8 on device.</b></p>
+    <div class="pills"><span class="pill g">GraphQL codegen</span><span class="pill g">Prisma migrations</span><span class="pill g">Push notifications</span></div>
+    <div class="links"><a href="#builds">📁 monorepo · 4 workspaces</a></div>
+  </div>
+
+  <div class="proj">
+    <span class="tag">quiz</span>
+    <h3><span class="v">▸ QuizForge v1.0</span> — AI quiz platform</h3>
+    <div class="meta">NEXT.JS 15 · REACT 19 · SUPABASE · OPENAI · TRANSFORMERS.JS · PWA</div>
+    <p>AI quiz platform with <b>online/offline mode</b>, <b>multiplayer battles</b>, PWA install, and <b>local ML</b> (@xenova/transformers — works without hitting an API). Supabase auth + realtime.</p>
+    <div class="pills"><span class="pill g">offline-first</span><span class="pill p">multiplayer</span><span class="pill a">local ML</span></div>
+  </div>
+
+  <div class="proj">
+    <span class="tag am">ai crm</span>
+    <h3><span class="a">▸ Funnel System</span> — AI lead-extraction CRM</h3>
+    <div class="meta">NEXT.JS 16 · SUPABASE · GROQ (LLAMA 3.3) · VERCEL</div>
+    <p>Paste raw leads → LLM extracts, scores, and enriches them automatically. Built for web-dev client acquisition. Full Supabase schema, two-tier admin.</p>
+  </div>
+
+  <div class="proj">
+    <span class="tag">whatsapp + insta</span>
+    <h3><span class="g">▸ Bots — WhatsApp &amp; Instagram</span> (same engine, two platforms)</h3>
+    <div class="meta">WHATSAPP-WEB.JS · PUPPETEER-STEALTH · NODE · AI CRM (BACKEND+FRONTEND)</div>
+    <p>Human-like messaging engine: <b>warmup &amp; campaign modes</b>, anti-ban behavior, CSV pipelines, scheduled sends. <b>The Instagram bot is the same architecture ported over</b> — not just WhatsApp. Companion CRM with super-admin/admin tiers, JSONB settings, bcrypt auth. Plus a 55KB blueprint doc. <b>This is the "auto-replying AI on Instagram and WhatsApp" — not a claim, a repo.</b></p>
+    <div class="links"><a href="https://prashnasewa.com" target="_blank" rel="noopener">🌐 prashnasewa.com — live</a></div>
+  </div>
+
+  <div class="proj">
+    <span class="tag gr">paid work</span>
+    <h3><span class="g">▸ Nepse Scraper</span> — built for a client, paid Rs 5,000</h3>
+    <div class="meta">PYTHON · GIT REPO · 227MB · STOCK DATA PIPELINE</div>
+    <p>Scrapes Nepal Stock Exchange data on schedule. <b>Mine, built from scratch — and someone put real money on it.</b> One of the first things that taught me: code has a price list.</p>
+  </div>
+
+  <div class="proj">
+    <span class="tag am">hardest problem</span>
+    <h3><span class="a">▸ Cleritax / Student App</span> — the most complex thing I've shipped</h3>
+    <div class="meta">REACT · NODE/EXPRESS · SUPABASE · SQL · AZURE SWA · VERCEL</div>
+    <p><b>The hardest problem I've worked on.</b> Complete schema (supabase_schema.sql), deployment guide, testing guide, tunnel runner, AI integration layer documented end-to-end — plus a full product report and comprehensive audit doc. Everything a SaaS needs, nothing hand-waved.</p>
+    <div class="pills"><span class="pill a">deep schema</span><span class="pill g">deployed</span><span class="pill p">AI layer</span></div>
+  </div>
+
+  <div class="proj">
+    <span class="tag">client php</span>
+    <h3><span class="v">▸ Client contracts (PHP)</span> — the ones that paid</h3>
+    <div class="meta">SRB PORTAL · DARKZIP ADMIN ×3 · PRINT PORTALS · STORES · PUBLIC_HTML</div>
+    <p>Service portals with wallets, admin panels, OTP auth, e-commerce stores, print/WHMCS portals — <b>real briefs, real deadlines, real payments.</b> Not passion projects: contracts I fulfilled for clients.</p>
+  </div>
+
+  <div class="proj">
+    <span class="tag">live</span>
+    <h3><span class="v">▸ Prashnasewa</span> — Loksewa prep (tried, failed, rebuilt)</h3>
+    <div class="meta">A REAL PROJECT/ · PAST-PAPERS/ · PRAshnasewa-ai/</h3></div>
+    <p>My first serious product attempt: Loksewa question practice for Nepal's public-service exams. It didn't take off — <b>so I rebuilt the AI layer and kept the lessons.</b> Honest failure, documented.</p>
+    <div class="links"><a href="https://prashnasewa.com" target="_blank" rel="noopener">🌐 open prashnasewa.com</a></div>
+  </div>
+
+  <div class="path" style="margin-top:26px"><b>/home/pankaj/apps/</b> — three ways to ship mobile</div>
+  <div class="grid two">
+    <div class="card"><h3><span class="g">▸ AstraCam</span></h3><p>Native <b>Kotlin</b> camera app · release keystore signed · dev.astra.camera</p><div class="pills"><span class="pill g">Kotlin</span><span class="pill">Android Studio</span></div></div>
+    <div class="card"><h3><span class="g">▸ Mine Assistant</span></h3><p><b>Flutter</b> assistant app · deploy_to_device.sh · device testing guide</p><div class="pills"><span class="pill p">Flutter</span></div></div>
+    <div class="card"><h3><span class="g">▸ StudentHub</span></h3><p><b>Next.js + Express + Socket.io</b> monorepo · habits, notes, groups · Mongo Atlas</p><div class="pills"><span class="pill a">realtime</span></div></div>
+    <div class="card"><h3><span class="g">▸ NepalStudentToolkit</span></h3><p>Android · compliance checks · functional test results — documented like a pro</p></div>
+  </div>
+
+  <div class="warnbox">⚠ experiments shelf — inherited, tinkered, or cloned to study</div>
+  <div class="grid two">
+    <div class="card"><h3><span class="a">▸ Chaos shelf</span></h3><p>WhatsApp mass messenger (Node + PHP ports) · Instagram bot · Mob Control APK mod (smali/decompiled) · reelkit (Playwright + Remotion vertical-video pipeline — client work) · Python call-outreach scheduler · <b>faceless YouTube videos — tried, didn't fly</b> · casual video editing</p></div>
+    <div class="card"><h3><span class="p">▸ Cloned to study</span></h3><p>ShortGPT · OpenChatCut · opensource-clipping · lyrebird. <b>Read the changelogs, learned the architectures, gave credit.</b> That's how autodidacts reverse-engineer.</p></div>
+  </div>
+</section>
+
+<!-- ═══ DISK RECEIPTS ═══ -->
+<section id="disk">
+  <div class="path"><b>ls -la ~/</b> — the device itself, screenshots from my machine</div>
+  <h2>The disk doesn't lie<span class="cur">_</span></h2>
+  <p class="lead">40+ project folders, dated and rotting honestly since 2025. This isn't a curated portfolio folder — it's the whole grave and museum. Tap any shot to open full size.</p>
+  <div class="shots">
+    <a class="shot" href="assets/disk-1.png" target="_blank" rel="noopener" onclick="return openLB(0)"><img src="assets/disk-1.png" alt="Home folder — older projects"><div class="cap"><b>~/ · part 1</b> — agencies, video gen, bots</div></a>
+    <a class="shot" href="assets/disk-2.png" target="_blank" rel="noopener" onclick="return openLB(1)"><img src="assets/disk-2.png" alt="Home folder — paid work"><div class="cap"><b>~/ · part 2</b> — Nepse (paid), Result Maker, quizzes</div></a>
+    <a class="shot" href="assets/disk-3.png" target="_blank" rel="noopener" onclick="return openLB(2)"><img src="assets/disk-3.png" alt="Home folder — AI era"><div class="cap"><b>~/ · part 3</b> — AI era: aiflow, autogen, school stuff</div></a>
+    <a class="shot" href="assets/disk-4.png" target="_blank" rel="noopener" onclick="return openLB(3)"><img src="assets/disk-4.png" alt="Home folder — 488 files"><div class="cap"><b>~/ · part 4</b> — Files: 488 items, toolkit, GPA converter</div></a>
+    <a class="shot" href="assets/disk-5.png" target="_blank" rel="noopener" onclick="return openLB(4)"><img src="assets/disk-5.png" alt="Home folder — earliest folders"><div class="cap"><b>~/ · part 5</b> — the oldest layers</div></a>
+  </div>
+  <div class="warnbox">⚠ every folder = a real attempt · dates visible · nothing deleted for the demo</div>
+  <div class="card" style="border-color:var(--green)">
+    <h3><span class="g">▸ Wondering why I only sent you folder images?</span></h3>
+    <p>Fair. Here's the git too — commits, dates, repos, the whole paper trail: <b>github.com/hackedpankaj001-lab</b>. The folders were me showing you the workshop; this is showing you the paperwork. Sending both, just to be professional about it.</p>
+    <a href="assets/github-repos.png" onclick="return openLB(5)" style="display:block;border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:6px 0 10px;background:var(--well)">
+      <img src="assets/github-repos.png" alt="GitHub top repositories — hackedpankaj001-lab" style="width:100%;max-width:280px;display:block;margin:0 auto">
+    </a>
+    <div class="links"><a href="https://github.com/hackedpankaj001-lab" target="_blank" rel="noopener">🐙 github.com/hackedpankaj001-lab — 6 public repos</a></div>
+  </div>
+  <div class="grid three">
+    <div class="stat"><div class="lab">folders</div><div class="val g">40+</div></div>
+    <div class="stat"><div class="lab">span</div><div class="val p">2025 → now</div></div>
+    <div class="stat"><div class="lab">files/Files</div><div class="val a">488</div></div>
+  </div>
+</section>
+
+<!-- ═══ WHY HIRE ME ═══ -->
+<section id="hire">
+  <div class="path"><b>/home/pankaj/why_hire_me.sh</b> — chmod +x, running…</div>
+  <h2>Why should you hire me<span class="cur">_</span></h2>
+  <p class="lead">You asked for a vibe coder. Here's the case, in evidence — not adjectives.</p>
+
+  <div class="card" style="border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 4px 0 rgba(0,0,0,.55)">
+    <h3><span class="g">▸ The attitude: "I can work on it."</span></h3>
+    <p>You don't need someone who asks what's in the job description. You need someone you can <b>dump any work on</b> — a client's PHP portal at midnight, a Flutter app for a college, an AI bot, a spreadsheet mess, a video edit, a research dig, a design you can't describe yet — and get back <b>"done, here's the link."</b></p>
+    <p>That's not a promise, it's my track record: no teacher, no team, no roadmap — just folders piling up since I was 14 because someone gave me a problem and I refused to return it unfinished. <b>Give me anything. Watch me figure it out.</b> Your first reply from me will always be: <span style="color:var(--green)">I can work on it.</span></p>
+  </div>
+
+  <div class="card" style="border-color:var(--amber)">
+    <h3><span class="a">▸ The homework is already submitted</span></h3>
+    <p>Before our call, I ran OSINT on your entire footprint — momocha, Danson, ChimpVine, Davson360, both bankruptcies, the 2004 family site, your own words from 25 years of web archives. <b>The EXHIBIT A popup on this page is the receipt.</b> If I do this much for a job I don't even have yet — imagine what lands in your repo on day one.</p>
+  </div>
+
+  <div class="card" style="border-color:var(--green)">
+    <h3><span class="g">▸ Polymath on payroll — three hires, one person</span></h3>
+    <p>Web (Next/React) + Mobile (React Native, Flutter, native Kotlin) + AI/automation (LLM APIs, bots, scrapers) — and PHP when it pays. Your form says <b>"junior but can vibe code websites, mobile apps, videos, images"</b>: four checkboxes, one human, all already ticked.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="g">▸ I speak your tools natively</span></h3>
+    <p>Google Stitch, opencode, Claude, Codex, Gemini — daily drivers, not buzzwords. 22 UI screens shipped from prompts. <b>You don't train me on vibe coding; you point me at the problem.</b></p>
+  </div>
+
+  <div class="card">
+    <h3><span class="g">▸ I've shipped with money on the line</span></h3>
+    <p>Rs 5,000 for a Nepse scraper someone actually bought. Rs 6–8k/month freelancing — <b>while in 11th grade.</b> Client PHP contracts fulfilled, deadlines met. This isn't a portfolio built for grades; it's built for invoices.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="g">▸ Autodidact — by necessity, not by slogan</span></h3>
+    <p>No internet in my town. I coded on a television. Crypto at 14. OSINT from scratch. <b>Every skill on this page was acquired by wanting it badly enough and finding a way.</b> You can't teach initiative — you can only hire it.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="g">▸ The failures are on the page too</span></h3>
+    <p>Prashnasewa failed. Faceless YouTube failed. Cybersecurity didn't stick. <b>I publish the misses next to the hits</b> — because you're not hiring a highlight reel, you're hiring judgment. Failures are where the judgment came from.</p>
+  </div>
+
+  <div class="win">
+    <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">form_requirements — final check</span></div>
+    <div class="body" style="font-size:12.5px;line-height:2">
+      <span class="k">[x]</span> Loves technology <span class="c">— 40+ folders, 4 AM lights on</span><br>
+      <span class="k">[x]</span> Polymath <span class="c">— web · 3 mobile stacks · bots · video · OSINT</span><br>
+      <span class="k">[x]</span> Autodidact <span class="c">— TV + no internet → this page</span><br>
+      <span class="k">[x]</span> Neophile <span class="c">— Stitch, Groq, local ML, APK teardowns</span><br>
+      <span class="k">[x]</span> Great spoken English <span class="c">— 19-min call, done and documented</span><br>
+      <span class="k">[x]</span> Lives in Kathmandu <span class="c">— Baneshwor hostel, college by day</span><br>
+      <span class="k">[x]</span> Vibe codes websites / apps / videos / images<br>
+      <span class="k">[x]</span> Polymath you can dump any work on <span class="c">— "I can work on it"</span><br>
+      <span class="amb">[!]</span> Video games <span class="c">— not my lane; point me at it and it ships.</span><br>
+      <span class="prompt"></span><span class="cursor"></span>
+    </div>
+  </div>
+
+  <div class="tape" style="background:var(--green);color:#0E1116">✓ VERDICT: every box checked but one — and whatever you throw next, my reply is "I can work on it."</div>
+</section>
+
+<!-- ═══ NOW ═══ -->
+<section id="now">
+  <div class="path"><b>/home/pankaj/now</b> — current status</div>
+  <h2>Now →<span class="cur">_</span></h2>
+
+  <div class="card" style="border-color:var(--amber)">
+    <h3><span class="a">! ONE BOX UNCHECKED: video games</span></h3>
+    <p>Honest file: games aren't my thing — <b>but if the role needs one, I'll ship one fast.</b> Give me a problem and it gets solved; that's the whole autodidact contract. Everything else on the form, I've already lived.</p>
+    <div class="prog warn"><div class="row"><span>games (not my focus — will learn on demand)</span><span class="pc">given → done</span></div><div class="bar"><i style="width:35%"></i></div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--green)">
+    <h3><span class="g">✓ LEARNING LOOP</span> — 11th grade by day, freelancing and building after college</h3>
+    <p>Science stream · Kathmandu · dam-fluent English · self-taught everything. The form asked for a polymath autodidact who lives here. <b>That's the whole file.</b></p>
+    <div class="prog"><div class="row"><span>React / Next</span><span class="pc">90%</span></div><div class="bar"><i style="width:90%"></i></div></div>
+    <div class="prog"><div class="row"><span>Mobile (3 stacks)</span><span class="pc">80%</span></div><div class="bar"><i style="width:80%"></i></div></div>
+    <div class="prog"><div class="row"><span>Spoken English</span><span class="pc">fluent</span></div><div class="bar"><i style="width:95%"></i></div></div>
+    <div class="prog warn"><div class="row"><span>AI agents / vibe coding</span><span class="pc">95%</span></div><div class="bar"><i style="width:95%"></i></div></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="lab">age</div><div class="val g">18</div></div>
+    <div class="stat"><div class="lab">city</div><div class="val p">KTM</div></div>
+    <div class="stat"><div class="lab">projects</div><div class="val a">40+</div></div>
+  </div>
+  <div class="card" style="display:flex;gap:14px;align-items:center">
+    <img src="assets/profile.jpg" alt="Pankaj" style="width:96px;height:96px;object-fit:cover;border:1.5px solid var(--green);border-radius:4px;flex:none">
+    <div>
+      <h3><span class="g">▸ pankaj-singh</span></h3>
+      <p>18 · Kathmandu (hostel, Baneshwor) · home: Sarlahi · scholarship @ Bridge Water Intl, Sinamangal. Fluent English, dam-fast shipping. <b>Face you can verify against this file.</b></p>
+    </div>
+  </div>
+
+  <a class="btn" href="https://github.com/hackedpankaj001-lab" target="_blank" rel="noopener">open my github — hackedpankaj001-lab</a>
+  <a class="btn violet" href="https://prashnasewa.com" target="_blank" rel="noopener">open my live site — prashnasewa.com</a>
+  <a class="btn violet" href="#boot">↺ restart build log</a>
+
+  <div class="foot">
+    build log · 2026 · still compiling<span class="cursor" style="width:7px;height:11px"></span><br>
+    autodidact // kathmandu // 40+ repos // shipping since the TV days
+  </div>
+</section>
+
+</main>
+
+<nav class="tabbar">
+  <a href="#origin" data-t="journey"><span class="ic">⚑</span>JOURNEY</a>
+  <a href="#stack" data-t="stack"><span class="ic">▤</span>STACK</a>
+  <a href="#builds" data-t="builds"><span class="ic">⬢</span>BUILDS</a>
+  <a href="#now" data-t="now"><span class="ic">⚡</span>NOW</a>
+</nav>
+
+<script>
+// map sections → tab groups
+const groups = {journey:['boot','origin'], stack:['stack'], builds:['builds','disk'], hire:['hire'], now:['now']};
+const allTabs = [...document.querySelectorAll('.tabbar a, .desknav a')];
+function activeTab(){
+  const y = scrollY + innerHeight*.3;
+  let cur = 'journey';
+  for(const [g,ids] of Object.entries(groups)){
+    for(const id of ids){
+      const el = document.getElementById(id);
+      if(el && el.offsetTop <= y) cur = g;
+    }
+  }
+  allTabs.forEach(a => a.classList.toggle('on', a.dataset.t === cur));
+}
+addEventListener('scroll', activeTab, {passive:true}); activeTab();
+</script>
+<!-- ═══ EXHIBIT A MODAL ═══ -->
+<div class="overlay" id="exOverlay" onclick="if(event.target===this)closeExhibit()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Exhibit A dossier">
+    <div class="mbar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span>~/recon/exhibit-a — CHIMPVINE // DOSSIER</span>
+      <button class="x" onclick="closeExhibit()" aria-label="Close">✕ CLOSE</button>
+    </div>
+    <div class="banner">⚠ Exhibit A — here's what I dug up about you on the internet</div>
+    <iframe id="exFrame" data-src="dossier/index.html" title="VJ dossier" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- ═══ DISK LIGHTBOX ═══ -->
+<div class="lbover" id="lbOver" onclick="if(event.target===this)closeLB()">
+  <div class="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+    <div class="lbar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span id="lbTitle">~/disk/shot.png</span>
+      <button class="x" onclick="closeLB()" aria-label="Close">✕ CLOSE</button>
+    </div>
+    <div class="imgwrap"><img id="lbImg" src="assets/disk-1.png" alt="disk screenshot"></div>
+    <div class="nav">
+      <button id="lbPrev" onclick="lbNav(-1)">← PREV</button>
+      <span class="t" id="lbCount">1 / 5</span>
+      <button id="lbNext" onclick="lbNav(1)">NEXT →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// exhibit modal
+const ov = document.getElementById('exOverlay'), fr = document.getElementById('exFrame');
+function openExhibit(){
+  if(!fr.src) fr.src = fr.dataset.src;
+  ov.classList.add('open'); document.body.style.overflow='hidden';
+  return false;
+}
+function closeExhibit(){ ov.classList.remove('open'); document.body.style.overflow=''; }
+// disk lightbox
+const lbOver = document.getElementById('lbOver'), lbImg = document.getElementById('lbImg'),
+      lbTitle = document.getElementById('lbTitle'), lbCount = document.getElementById('lbCount'),
+      lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
+const LB_SRCS = ['assets/disk-1.png','assets/disk-2.png','assets/disk-3.png','assets/disk-4.png','assets/disk-5.png','assets/github-repos.png'];
+let lbI = 0;
+function lbShow(i){
+  lbI = Math.max(0, Math.min(LB_SRCS.length-1, i));
+  lbImg.src = LB_SRCS[lbI];
+  lbTitle.textContent = '~/disk/' + LB_SRCS[lbI].split('/').pop();
+  lbCount.textContent = (lbI+1) + ' / ' + LB_SRCS.length;
+  lbPrev.disabled = lbI === 0; lbNext.disabled = lbI === LB_SRCS.length-1;
+}
+function openLB(i){ lbShow(i); lbOver.classList.add('open'); document.body.style.overflow='hidden'; return false; }
+function closeLB(){ lbOver.classList.remove('open'); document.body.style.overflow=''; }
+function lbNav(d){ lbShow(lbI + d); }
+addEventListener('keydown', e => {
+  if(e.key==='Escape'){ if(lbOver.classList.contains('open')) closeLB(); else closeExhibit(); }
+  if(lbOver.classList.contains('open')){
+    if(e.key==='ArrowLeft') lbNav(-1);
+    if(e.key==='ArrowRight') lbNav(1);
+  }
+});
+</script>
+</body>
+</html>
