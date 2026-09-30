@@ -20,7 +20,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-size:14p
 img{max-width:100%;display:block}
 a{color:var(--green)}
 /* yellow highlights on key words */
-main b:not(.path b),main strong:not(.path b){color:#FFD866;font-weight:700;background:rgba(255,216,102,.12);padding:0 3px;border-radius:2px}
+b,strong{color:#FFD866;font-weight:700;background:rgba(255,216,102,.12);padding:0 3px;border-radius:2px}
 /* ── header ── */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(14,17,22,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11.5px}
 .hdr .l{display:flex;align-items:center;gap:8px;color:var(--mut)}
@@ -59,7 +59,7 @@ main b:not(.path b),main strong:not(.path b){color:#FFD866;font-weight:700;backg
 main{max-width:680px;margin:0 auto;padding:64px 16px calc(var(--tabh) + 36px)}
 section{margin-bottom:56px;scroll-margin-top:60px}
 .path{font-size:11px;color:var(--mut);letter-spacing:.04em;margin-bottom:10px;word-break:break-all}
-.path b{color:var(--green);font-weight:500}
+.path b{color:var(--green);font-weight:500;background:none;padding:0}
 h2{font-size:clamp(20px,5vw,28px);font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
 .lead{color:var(--mut);font-size:13.5px;margin-bottom:16px}
@@ -80,7 +80,7 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
 .card h3{font-size:14.5px;font-weight:700;margin-bottom:8px}
 .card h3 .g{color:var(--green)} .card h3 .a{color:var(--amber)} .card h3 .v{color:var(--violet)}
 .card p{color:var(--mut);font-size:13px;margin-bottom:6px}
-.card p b,.card p strong{color:var(--txt)}
+.card p b,.card p strong{color:#FFD866}
 .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:14px}
 /* ── stickers ── */
 .stickers{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
@@ -111,7 +111,7 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
 .tl .ev::before{content:"";position:absolute;left:-24px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--bg);box-shadow:0 0 0 1.5px var(--line)}
 .tl .yr{color:var(--green);font-weight:700;font-size:12.5px}
 .tl .tx{color:var(--mut);font-size:13px}
-.tl .tx b{color:var(--txt)}
+.tl .tx b{color:#FFD866}
 /* ── project cards w/ corner sticker tag ── */
 .proj{background:var(--s1);border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden}
 .proj .tag{position:absolute;top:10px;right:-30px;transform:rotate(35deg);background:var(--violet);color:#fff;font-size:9px;font-weight:800;letter-spacing:.1em;padding:4px 34px;text-transform:uppercase}
@@ -156,7 +156,7 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
 .shot{flex:0 0 88%;scroll-snap-align:start;border:1px solid var(--line);border-radius:4px;background:var(--s1);overflow:hidden;box-shadow:0 4px 0 rgba(0,0,0,.55);text-decoration:none}
 .shot img{width:100%;display:block}
 .shot .cap{font-size:10px;color:var(--mut);letter-spacing:.06em;padding:7px 9px;border-top:1px solid var(--line);text-transform:uppercase}
-.shot .cap b{color:var(--green);font-weight:600}
+.shot .cap b{color:var(--green);font-weight:600;background:none;padding:0}
 @media (min-width:900px){
   .shots{display:grid;grid-template-columns:1fr 1fr;gap:14px;overflow:visible}
   .shot{flex:none}
