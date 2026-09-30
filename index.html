@@ -19,6 +19,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-size:14p
   background-image:linear-gradient(rgba(22,27,34,.4) .5px,transparent .5px),linear-gradient(90deg,rgba(22,27,34,.4) .5px,transparent .5px);background-size:32px 32px}
 img{max-width:100%;display:block}
 a{color:var(--green)}
+/* yellow highlights on key words */
+main b:not(.path b),main strong:not(.path b){color:#FFD866;font-weight:700;background:rgba(255,216,102,.12);padding:0 3px;border-radius:2px}
 /* ── header ── */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(14,17,22,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11.5px}
 .hdr .l{display:flex;align-items:center;gap:8px;color:var(--mut)}
@@ -289,14 +291,12 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
   <h2>Before the cloud<span class="cur">_</span></h2>
   <p class="lead">No internet in my town. So I started where the screen was.</p>
   <div class="tl">
-    <div class="ev"><span class="yr">roots</span><div class="tx"><b>Home: Sarlahi.</b> Came to Kathmandu for studies — now on a <b>scholarship at Bridge Water International College, Sinamangal</b>, living in a hostel in <b>Baneshwor</b>. Science, 11th grade, weekday brain on school, evening brain on builds.</div></div>
-    <div class="ev"><span class="yr">age 14 · ~2022</span><div class="tx"><b>Trading crypto at fourteen.</b> While other kids played games, I was reading charts, learning markets, losing and compounding — self-taught economics from YouTube and whitepapers on a slow connection. First lesson: risk management, the hard way.</div></div>
-    <div class="ev"><span class="yr">the TV years</span><div class="tx"><b>I coded on an actual TV.</b> No monitor, no laptop lab — a television as the display, typing out programs with no internet to copy from. No Stack Overflow, no AI. Trial, error, restart. That's where the autodidact instinct was forged.</div></div>
-    <div class="ev"><span class="yr">the drought</span><div class="tx"><b>Town with no internet.</b> I'd plan code on paper, then execute it in bursts whenever connectivity existed. Constraints became a design style — build offline-first, ship fast, waste nothing.</div></div>
-    <div class="ev"><span class="yr">cybersecurity phase</span><div class="tx"><b>Tried cybersecurity — didn't stick.</b> What stuck: <b>OSINT</b>. Recon, footprinting, people-searches, archive digs. That training is exactly why I could pull a complete file on the founder of Danson Solutions before this call. <b>The dossier on this site is my homework.</b></div></div>
-    <div class="ev"><span class="yr">2023–now</span><div class="tx"><b>Tried a lot of things.</b> Crypto, scrapers, bots (WhatsApp <b>and Instagram</b>), video generation, faceless YouTube channels, casual video editing, APK reverse-engineering, calling systems, freelancing for local clients. Some worked, most didn't. <b>The 40+ folders on my disk are the residue of real experiments</b> — not coursework.</div></div>
+    <div class="ev"><span class="yr">roots</span><div class="tx"><b>Sarlahi → Kathmandu</b> for studies. <b>Scholarship</b>, Bridge Water Intl (Sinamangal). Hostel in <b>Baneshwor</b>. 11th grade, science.</div></div>
+    <div class="ev"><span class="yr">age 14</span><div class="tx"><b>Trading crypto at fourteen.</b> Self-taught markets, risk, failure — before most kids had a bank account.</div></div>
+    <div class="ev"><span class="yr">the TV years</span><div class="tx"><b>I coded on a TV</b> — no internet in my town, no computer lab. No Stack Overflow, no AI. <b>Trial, error, restart.</b></div></div>
+    <div class="ev"><span class="yr">cybersecurity</span><div class="tx">Tried it, didn't stick. <b>OSINT stuck.</b> It's exactly why I could pull a full file on Danson's founder before our call — <b>the EXHIBIT A dossier is my homework.</b></div></div>
+    <div class="ev"><span class="yr">2023–now</span><div class="tx">Bots (WhatsApp <b>+ Instagram</b>), scrapers, video gen, faceless YouTube, APK teardowns, freelancing. Some worked, most didn't. <b>The 40+ folders are real experiments — not coursework.</b></div></div>
   </div>
-  <div class="quote" style="border:1px dashed var(--green);background:var(--s1);border-radius:4px;padding:14px;font-size:13px;color:var(--mut)">"I'm not a bootcamp graduate. I'm the guy who learned by needing the thing to work — <span style="color:var(--green)">today, at 18, I freelance for real clients and build industry-level apps at night.</span>"</div>
 </section>
 
 <!-- ═══ STACK ═══ -->
@@ -322,24 +322,13 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
   <div class="win">
     <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="p">~/toolbelt/status</span></div>
     <div class="body" style="font-size:12.5px;line-height:1.9">
-      <span class="k">✓</span> <span class="v">opencode</span> <span class="c">— primary agent, drives the terminal</span><br>
-      <span class="k">✓</span> <span class="v">Claude</span> <span class="c">— architecture, refactors, reviews</span><br>
-      <span class="k">✓</span> <span class="v">Codex</span> <span class="c">— second opinion on tricky code</span><br>
-      <span class="k">✓</span> <span class="v">Cline / Continue</span> <span class="c">— in-editor pair programming</span><br>
-      <span class="k">✓</span> <span class="v">Copilot / Gemini CLI</span> <span class="c">— autocomplete & quick scripts</span><br>
-      <span class="ppl">◈</span> <span class="v">Google Stitch</span> <span class="c">— 22 UI screens shipped from prompts</span><br>
-      <span class="amb">◈</span> <span class="v">OpenAI · Groq (LLaMA 3.3) · Gemini TTS · transformers.js</span> <span class="c">— runtime APIs</span><br>
+      <span class="k">✓</span> <span class="v">opencode · Claude · Codex · Cline · Copilot · Gemini CLI</span> <span class="c">— daily drivers</span><br>
+      <span class="ppl">◈</span> <span class="v">Google Stitch</span> <span class="c">— UIs from prompts</span><br>
+      <span class="amb">◈</span> <span class="v">OpenAI · Groq · Gemini TTS · transformers.js</span> <span class="c">— runtime APIs</span><br>
       <span class="prompt"></span><span class="cursor"></span>
     </div>
   </div>
-  <div class="path" style="margin-top:26px"><b>/home/pankaj/stitch/</b> — design output</div>
-  <h2>22 screens from prompts<span class="cur">_</span></h2>
-  <div class="gallery">
-    <figure><img src="assets/stitch-boot.png" alt="Stitch screen — terminal boot"><figcaption>boot.sh</figcaption></figure>
-    <figure><img src="assets/stitch-vhakari.png" alt="Stitch screen — vhakari"><figcaption>vhakari.md</figcaption></figure>
-    <figure><img src="assets/stitch-ai.png" alt="Stitch screen — ai builds"><figcaption>ai_builds.md</figcaption></figure>
-  </div>
-  <div class="pills"><span class="pill g">Cleritax</span><span class="pill p">Student OS</span><span class="pill a">CheatCode</span><span class="pill">Sajilo Web</span><span class="pill">Quiz Video</span><span class="pill">Audiobook</span><span class="pill">Avis Plumbing</span></div>
+
 </section>
 
 <!-- ═══ BUILDS ═══ -->
@@ -352,61 +341,60 @@ h2 .cur{color:var(--green);animation:blink 1s step-start infinite}
     <span class="tag gr">flagship</span>
     <h3><span class="g">▸ Vhakari</span> — cross-platform app + admin</h3>
     <div class="meta">EXPO RN · NEXT.JS · 2× GRAPHQL APIs · PRISMA · JWT · PUSH</div>
-    <p>Monorepo: <b>app/</b> (Expo ~38, Apollo, Redux Toolkit, Firebase) + <b>admin/</b> (Next.js, AntD, Prisma, AWS) + <b>app-api/ &amp; admin-api/</b> (Apollo Server, codegen'd GraphQL, expo-server-sdk push). 4 packages, per-client codegen configs, migrations. <b>v1.0.8 on device.</b></p>
-    <div class="pills"><span class="pill g">GraphQL codegen</span><span class="pill g">Prisma migrations</span><span class="pill g">Push notifications</span></div>
-    <div class="links"><a href="#builds">📁 monorepo · 4 workspaces</a></div>
+    <p>Monorepo, 4 workspaces: <b>app/</b> + <b>admin/</b> + 2 GraphQL APIs. Codegen, migrations, push. <b>v1.0.8 on device.</b></p>
+    <div class="pills"><span class="pill g">GraphQL codegen</span><span class="pill g">Prisma</span><span class="pill g">Push</span></div>
   </div>
 
   <div class="proj">
     <span class="tag">quiz</span>
     <h3><span class="v">▸ QuizForge v1.0</span> — AI quiz platform</h3>
-    <div class="meta">NEXT.JS 15 · REACT 19 · SUPABASE · OPENAI · TRANSFORMERS.JS · PWA</div>
-    <p>AI quiz platform with <b>online/offline mode</b>, <b>multiplayer battles</b>, PWA install, and <b>local ML</b> (@xenova/transformers — works without hitting an API). Supabase auth + realtime.</p>
+    <div class="meta">NEXT.JS 15 · SUPABASE · OPENAI · TRANSFORMERS.JS · PWA</div>
+    <p><b>Offline-first</b>, <b>multiplayer battles</b>, installable PWA, <b>local ML</b> — works with zero API calls.</p>
     <div class="pills"><span class="pill g">offline-first</span><span class="pill p">multiplayer</span><span class="pill a">local ML</span></div>
   </div>
 
   <div class="proj">
     <span class="tag am">ai crm</span>
     <h3><span class="a">▸ Funnel System</span> — AI lead-extraction CRM</h3>
-    <div class="meta">NEXT.JS 16 · SUPABASE · GROQ (LLAMA 3.3) · VERCEL</div>
-    <p>Paste raw leads → LLM extracts, scores, and enriches them automatically. Built for web-dev client acquisition. Full Supabase schema, two-tier admin.</p>
+    <div class="meta">NEXT.JS 16 · SUPABASE · GROQ · VERCEL</div>
+    <p>Paste raw leads → <b>LLM extracts, scores, enriches</b> automatically. Full schema, two-tier admin.</p>
   </div>
 
   <div class="proj">
     <span class="tag">whatsapp + insta</span>
-    <h3><span class="g">▸ Bots — WhatsApp &amp; Instagram</span> (same engine, two platforms)</h3>
-    <div class="meta">WHATSAPP-WEB.JS · PUPPETEER-STEALTH · NODE · AI CRM (BACKEND+FRONTEND)</div>
-    <p>Human-like messaging engine: <b>warmup &amp; campaign modes</b>, anti-ban behavior, CSV pipelines, scheduled sends. <b>The Instagram bot is the same architecture ported over</b> — not just WhatsApp. Companion CRM with super-admin/admin tiers, JSONB settings, bcrypt auth. Plus a 55KB blueprint doc. <b>This is the "auto-replying AI on Instagram and WhatsApp" — not a claim, a repo.</b></p>
+    <h3><span class="g">▸ Bots — WhatsApp &amp; Instagram</span></h3>
+    <div class="meta">WHATSAPP-WEB.JS · PUPPETEER-STEALTH · NODE · AI CRM</div>
+    <p><b>Warmup &amp; campaign modes</b>, anti-ban, CSV pipelines, scheduling. Instagram = <b>same engine, second platform</b>. Companion CRM included. <b>"Auto-replying AI on Instagram and WhatsApp" — not a claim, a repo.</b></p>
     <div class="links"><a href="https://prashnasewa.com" target="_blank" rel="noopener">🌐 prashnasewa.com — live</a></div>
   </div>
 
   <div class="proj">
     <span class="tag gr">paid work</span>
-    <h3><span class="g">▸ Nepse Scraper</span> — built for a client, paid work</h3>
-    <div class="meta">PYTHON · GIT REPO · 227MB · STOCK DATA PIPELINE</div>
-    <p>Scrapes Nepal Stock Exchange data on schedule. <b>Mine, built from scratch — and someone put real money on it.</b> One of the first things that taught me: code has a price list.</p>
+    <h3><span class="g">▸ Nepse Scraper</span> — built for a client</h3>
+    <div class="meta">PYTHON · STOCK DATA PIPELINE</div>
+    <p>Scheduled NEPSE scrapes. <b>Built from scratch — someone paid me for it.</b> Code has a price list.</p>
   </div>
 
   <div class="proj">
     <span class="tag am">hardest problem</span>
     <h3><span class="a">▸ Cleritax / Student App</span> — the most complex thing I've shipped</h3>
     <div class="meta">REACT · NODE/EXPRESS · SUPABASE · SQL · AZURE SWA · VERCEL</div>
-    <p><b>The hardest problem I've worked on.</b> Complete schema (supabase_schema.sql), deployment guide, testing guide, tunnel runner, AI integration layer documented end-to-end — plus a full product report and comprehensive audit doc. Everything a SaaS needs, nothing hand-waved.</p>
+    <p><b>Hardest problem I've worked on.</b> Full schema, deployment + testing guides, AI layer, product report, audit doc. <b>Everything a SaaS needs, nothing hand-waved.</b></p>
     <div class="pills"><span class="pill a">deep schema</span><span class="pill g">deployed</span><span class="pill p">AI layer</span></div>
   </div>
 
   <div class="proj">
     <span class="tag">client php</span>
     <h3><span class="v">▸ Client contracts (PHP)</span> — the ones that paid</h3>
-    <div class="meta">SRB PORTAL · DARKZIP ADMIN ×3 · PRINT PORTALS · STORES · PUBLIC_HTML</div>
-    <p>Service portals with wallets, admin panels, OTP auth, e-commerce stores, print/WHMCS portals — <b>real briefs, real deadlines, real payments.</b> Not passion projects: contracts I fulfilled for clients.</p>
+    <div class="meta">SRB PORTAL · DARKZIP ADMINS ×3 · PRINT PORTALS · STORES</div>
+    <p>Portals, wallets, OTP, e-commerce, WHMCS — <b>real briefs, real deadlines, real payments.</b></p>
   </div>
 
   <div class="proj">
     <span class="tag">live</span>
-    <h3><span class="v">▸ Prashnasewa</span> — Loksewa prep (tried, failed, rebuilt)</h3>
-    <div class="meta">A REAL PROJECT/ · PAST-PAPERS/ · PRAshnasewa-ai/</h3></div>
-    <p>My first serious product attempt: Loksewa question practice for Nepal's public-service exams. It didn't take off — <b>so I rebuilt the AI layer and kept the lessons.</b> Honest failure, documented.</p>
+    <h3><span class="v">▸ Prashnasewa</span> — tried, failed, rebuilt</h3>
+    <div class="meta">LOKSEWA PREP · AI REBUILT</div>
+    <p>First serious product. Didn't take off — <b>rebuilt the AI layer, kept the lessons.</b> Honest failure, documented.</p>
     <div class="links"><a href="https://prashnasewa.com" target="_blank" rel="noopener">🌐 open prashnasewa.com</a></div>
   </div>
 
